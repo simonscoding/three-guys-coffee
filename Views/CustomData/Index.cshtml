@@ -1,0 +1,75 @@
+﻿@model Services.Recipies.Models.RecipeApiResponse
+
+@{
+    ViewData["Title"] = "Recipies";
+}
+
+<section class="m-standard">
+    <div class="content-standard">
+        
+
+
+<!-- Loop through each recipe in the Recipes list -->
+@foreach (var recipe in Model.Recipes)
+{
+    <div class="recipe-card ">
+        <h2>@recipe.Name</h2>
+
+        <!-- Display the image -->
+        @if (!string.IsNullOrEmpty(recipe.Image))
+        {
+            <img src="@recipe.Image" alt="@recipe.Name" style="max-width: 300px; height: auto;" />
+        }
+        else
+        {
+            <p>No image available</p>
+        }
+
+        <p><strong>Prep Time:</strong> @recipe.PrepTimeMinutes minutes</p>
+        <p><strong>Cook Time:</strong> @recipe.CookTimeMinutes minutes</p>
+        <p><strong>Servings:</strong> @recipe.Servings</p>
+        <p><strong>Difficulty:</strong> @recipe.Difficulty</p>
+        <p><strong>Cuisine:</strong> @recipe.Cuisine</p>
+        <p><strong>Calories per Serving:</strong> @recipe.CaloriesPerServing</p>
+        <p><strong>Rating:</strong> @recipe.Rating</p>
+        <p><strong>Review Count:</strong> @recipe.ReviewCount</p>
+
+        <h3>Ingredients</h3>
+        <ul>
+            @foreach (var ingredient in recipe.Ingredients)
+            {
+                <li>@ingredient</li>
+            }
+        </ul>
+
+        <h3>Instructions</h3>
+        <ul>
+            @foreach (var instruction in recipe.Instructions)
+            {
+                <li>@instruction</li>
+            }
+        </ul>
+
+        <h3>Tags</h3>
+        <ul>
+            @foreach (var tag in recipe.Tags)
+            {
+                <li>@tag</li>
+            }
+        </ul>
+
+        <h3>Meal Type</h3>
+        <ul>
+            @foreach (var meal in recipe.MealType)
+            {
+                <li>@meal</li>
+            }
+        </ul>
+
+        <hr />
+    </div>
+
+
+}
+    </div>
+</section>
